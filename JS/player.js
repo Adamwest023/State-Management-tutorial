@@ -1,4 +1,15 @@
-import { StandingLeft, StandingRight, SittingLeft, SittingRight, RunningLeft, RunningRight, JumpingLeft, JumpingRight } from "./state.js";
+import {
+    StandingLeft,
+    StandingRight,
+    SittingLeft,
+    SittingRight,
+    RunningLeft,
+    RunningRight,
+    JumpingLeft,
+    JumpingRight,
+    FallingLeft,
+    FallingRight
+} from "./state.js";
 
 export default class Player {
     constructor(gameWidth, gameHeight) {
@@ -12,7 +23,9 @@ export default class Player {
             new RunningLeft(this),
             new RunningRight(this),
             new JumpingLeft(this),
-            new JumpingRight(this)
+            new JumpingRight(this),
+            new FallingLeft(this),
+            new FallingRight(this)
         ];
         this.currentState = this.states[1];
         this.image = dogImage;
@@ -48,13 +61,17 @@ export default class Player {
         else {
             this.vy = 0;
         }
+        //vertical boundary
+        // if(this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height;
+
+
     }
     setState(state) {
         this.currentState = this.states[state];
         this.currentState.enter();
     }
     onGround() {
-    return this.y >= this.gameHeight - this.height
+        return this.y >= this.gameHeight - this.height
     }
 
 }
