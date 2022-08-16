@@ -15,7 +15,6 @@ export const states = {
 class State {
     constructor(state) {
         this.state = state;
-
     }
 }
 //child class of State
@@ -157,7 +156,6 @@ export class JumpingRight extends State {
         else if (this.player.vy > 0) this.player.setState(states.FALLING_RIGHT);
     }
 };
-
 export class FallingLeft extends State {
     constructor(player) {
         super('FALLING LEFT');
